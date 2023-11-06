@@ -78,6 +78,12 @@ namespace SecondUdemBank
                 Console.WriteLine("Saldo ingresado exitosamente");
                 MenuManager.GestionarMenuGrupoDeAhorro(usuario, grupoDeAhorro);
             }
+            else
+            {
+
+                Console.WriteLine("Saldo insuficiente");
+                MenuManager.GestionarMenuGrupoDeAhorro(usuario, grupoDeAhorro);
+            }
         }
 
         public static void DisolverGrupoDeAhorro(Usuario usuario, GrupoDeAhorro grupoDeAhorro)

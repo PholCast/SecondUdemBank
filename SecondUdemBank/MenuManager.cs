@@ -107,6 +107,8 @@ namespace SecondUdemBank
 
         public static void GestionarMenuRegistrarse()
         {
+            Console.ReadKey();
+            Console.Clear();
             var option = AnsiConsole.Prompt(
             new SelectionPrompt<MenuRegistrarse>()
             .Title("Que quieres hacer?: ")
@@ -127,6 +129,8 @@ namespace SecondUdemBank
 
         public static void GestionarMenuFidelizacion()
         {
+            Console.ReadKey();
+            Console.Clear();
             var option = AnsiConsole.Prompt(
             new SelectionPrompt<MenuFidelizacion>()
             .Title("Que quieres hacer?: ")
@@ -147,6 +151,8 @@ namespace SecondUdemBank
 
         public static void GestionarMenuUsuario(Usuario usuario)
         {
+            Console.ReadKey();
+            Console.Clear();
             var option = AnsiConsole.Prompt(
                 new SelectionPrompt<MenuUsuario>()
                 .Title("Qué quieres hacer?")
@@ -184,6 +190,8 @@ namespace SecondUdemBank
 
         public static void GestionarMenuMiCuenta(Usuario usuario)
         {
+            Console.ReadKey();
+            Console.Clear();
             var option = AnsiConsole.Prompt(
                 new SelectionPrompt<MenuMiCuenta>()
                 .Title("Qué quieres hacer?")
@@ -205,6 +213,8 @@ namespace SecondUdemBank
 
         public static void GestionarMenuMisGruposDeAhorro(Usuario usuario)
         {
+            Console.ReadKey();
+            Console.Clear();
             var option = AnsiConsole.Prompt(
               new SelectionPrompt<MenuGestionarGruposDeAhorro>()
               .Title("Qué quieres hacer?")
@@ -239,6 +249,8 @@ namespace SecondUdemBank
 
         public static void GestionarMenuGrupoDeAhorro(Usuario usuario, GrupoDeAhorro grupo)
         {
+            Console.ReadKey();
+            Console.Clear();
             var option = AnsiConsole.Prompt(
                 new SelectionPrompt<MenuGrupoDeAhorro>()
                 .Title("Qué quieres hacer?")
@@ -287,6 +299,8 @@ namespace SecondUdemBank
 
         public static void GestionarMenuPrestamos(Usuario usuario)
         {
+            Console.ReadKey();
+            Console.Clear();
             var option = AnsiConsole.Prompt(
             new SelectionPrompt<MenuPrestamos>()
             .Title("Te encuentras en el menu de Prestamos, ¿A que grupo deseas prestar? ")
@@ -332,6 +346,8 @@ namespace SecondUdemBank
 
         public static void GestionarMenuPagos(Usuario usuario)
         {
+            Console.ReadKey();
+            Console.Clear();
             var option = AnsiConsole.Prompt(
             new SelectionPrompt<MenuPagos>()
             .Title("Te encuentras en el menu de Pagos, ¿A que tipo de grupo deseas pagarle? ")
