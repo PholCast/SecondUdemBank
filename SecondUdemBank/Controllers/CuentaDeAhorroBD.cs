@@ -10,9 +10,10 @@ namespace SecondUdemBank
 {
     public class CuentaDeAhorroBD
     {
-        public static void CrearCuentaDeAhorro(int id)
+        public static void CrearCuentaDeAhorro(int id, double Saldo = -1)
         {
-            var Saldo = AnsiConsole.Ask<double>("Ingresa tu saldo inicial: ");
+            if (Saldo == -1) { 
+             Saldo = AnsiConsole.Ask<double>("Ingresa tu saldo inicial: "); }
 
             using var db = new Contexto(); //Conexión a la BD --> contexto
             db.CuentasDeAhorros.Add(new CuentaDeAhorro { id_propietario = id, saldo  = Saldo });

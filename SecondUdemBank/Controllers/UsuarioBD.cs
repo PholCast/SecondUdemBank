@@ -10,21 +10,25 @@ namespace SecondUdemBank
 {
     public class UsuarioBD
     {
-        public static void CrearCuenta()
+        public static void CrearCuenta(String Nombre = "", String Clave = "")
         {
             //Se supone que el Id lo crear el entity framework
-            var Nombre = AnsiConsole.Ask<string>("Ingresa tu nombre: ");
-            var Clave = AnsiConsole.Ask<string>("Ingresa una clave:");
+            if(Nombre == "" && Clave == "")
+            {
+                Nombre = AnsiConsole.Ask<string>("Ingresa tu nombre: ");
+                Clave = AnsiConsole.Ask<string>("Ingresa una clave:");
+            }
+            
 
             using var db = new Contexto(); //Conexión a la BD --> contexto
             var nuevoUsuario = new Usuario { nombre = Nombre, clave = Clave };
             db.Usuarios.Add(nuevoUsuario);
             db.SaveChanges();
 
-            int nuevoUsuarioId = nuevoUsuario.id;
-            CuentaDeAhorroBD.CrearCuentaDeAhorro(nuevoUsuarioId);
+            //int nuevoUsuarioId = nuevoUsuario.id;
+            //CuentaDeAhorroBD.CrearCuentaDeAhorro(nuevoUsuarioId);
 
-            MenuManager.MainMenuManagement();
+            //MenuManager.MainMenuManagement();
         }
 
         public static List<Usuario> ObtenerUsuarios()
