@@ -9,7 +9,7 @@ namespace SecondUdemBank
 {
     public class Login
     {
-        public static Usuario ObtenerListaUsuarios(int IdUsuario = -1)
+       /* public static Usuario ObtenerListaUsuarios(int IdUsuario = -1)
         {
             var usuarios = UsuarioBD.ObtenerUsuarios();
 
@@ -21,7 +21,7 @@ namespace SecondUdemBank
                     .AddChoices(ListaUsuarios));
 
                 var id = usuarios.Single(x => x.nombre == opcion).id;
-                var usuario = UsuarioBD.ObtenerUsuarioPorId(id);
+                //var usuario = UsuarioBD.ObtenerUsuarioPorId(id);
                 return usuario;
             }
             else
@@ -39,12 +39,12 @@ namespace SecondUdemBank
                     .AddChoices(ListaUsuarios));
 
                 var id = usuarios.Single(x => x.nombre == opcion).id;
-                var usuario = UsuarioBD.ObtenerUsuarioPorId(id);
-                return usuario;
+                //var usuario = UsuarioBD.ObtenerUsuarioPorId(id);
+                //return usuario;
             }
-        }
+        }*/
 
-        public static Usuario Acceder()
+       /* public static Usuario Acceder()
         {
             String claveIngresada;
             Usuario usuario;
@@ -64,7 +64,7 @@ namespace SecondUdemBank
             } while (claveIngresada != usuario.clave);
 
             return usuario;  
-        }
+        }*/
 
         public static GrupoDeAhorro SeleccionarMiGrupoAhorro(int idUsuario)
         {

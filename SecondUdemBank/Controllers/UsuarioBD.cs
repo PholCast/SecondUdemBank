@@ -10,11 +10,11 @@ namespace SecondUdemBank
 {
     public class UsuarioBD
     {
-        readonly Contexto contexto;
+        private Contexto context;
 
-        public UsuarioBD(Contexto context)
+        public UsuarioBD(Contexto contexto)
         {
-            contexto = context;
+            context = contexto;
         }
 
         public void CrearCuenta(String Nombre = "", String Clave = "")
@@ -32,8 +32,8 @@ namespace SecondUdemBank
             
 
             var nuevoUsuario = new Usuario { nombre = Nombre, clave = Clave };
-            contexto.Usuarios.Add(nuevoUsuario);
-            contexto.SaveChanges();
+            context.Usuarios.Add(nuevoUsuario);
+            context.SaveChanges();
 
             //int nuevoUsuarioId = nuevoUsuario.id;
             //CuentaDeAhorroBD.CrearCuentaDeAhorro(nuevoUsuarioId);
@@ -48,10 +48,10 @@ namespace SecondUdemBank
             return usuarios;
         }
 
-        public static Usuario ObtenerUsuarioPorId(int id)
+        public Usuario ObtenerUsuarioPorId(int id)
         {
-            using var db = new Contexto();
-            var usuario = db.Usuarios.SingleOrDefault(u => u.id == id);
+            //using var db = new Contexto();
+            var usuario = context.Usuarios.SingleOrDefault(u => u.id == id);
             return usuario;
         }
 

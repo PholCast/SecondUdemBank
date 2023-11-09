@@ -90,8 +90,8 @@ namespace SecondUdemBank
             switch (option)
             {
                 case MainMenuOptions.IniciarSesion:
-                    Usuario usuario = Login.Acceder();
-                    GestionarMenuUsuario(usuario);
+                    //Usuario usuario = Login.Acceder();
+                    //GestionarMenuUsuario(usuario);
                     break;
                 case MainMenuOptions.Registrarse:
                     GestionarMenuRegistrarse();
@@ -119,7 +119,7 @@ namespace SecondUdemBank
             switch (option)
             {
                 case MenuRegistrarse.CrearCuenta:
-                    UsuarioBD.CrearCuenta();
+                    //UsuarioBD.CrearCuenta();
                     break;
                 case MenuRegistrarse.Salir:
                     MainMenuManagement();
@@ -270,8 +270,8 @@ namespace SecondUdemBank
                         bool VerificarInvitacion = GrupoDeAhorroBD.ObtenerCantidadUsuarios(grupo);
                         if (VerificarInvitacion)
                         {
-                            Usuario usuarioInvitado = Login.ObtenerListaUsuarios(usuario.id);
-                            GrupoDeAhorroBD.IngresarUsuarioAGrupoDeAhorro(usuario, usuarioInvitado, grupo);
+                            //Usuario usuarioInvitado = Login.ObtenerListaUsuarios(usuario.id);
+                            //GrupoDeAhorroBD.IngresarUsuarioAGrupoDeAhorro(usuario, usuarioInvitado, grupo);
                         }
                         else
                         {
