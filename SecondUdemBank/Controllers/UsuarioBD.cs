@@ -41,10 +41,10 @@ namespace SecondUdemBank
             //MenuManager.MainMenuManagement();
         }
 
-        public static List<Usuario> ObtenerUsuarios()
+        public List<Usuario> ObtenerUsuarios()
         {
-            using var db = new Contexto();
-            var usuarios = db.Usuarios.ToList();
+          //  using var db = new Contexto();
+            var usuarios = context.Usuarios.ToList();
             return usuarios;
         }
 
@@ -55,16 +55,16 @@ namespace SecondUdemBank
             return usuario;
         }
 
-        public static void MostrarInformacionCuenta(Usuario usuario)
+        public void MostrarInformacionCuenta(Usuario usuario)
         {
-            using var db = new Contexto();
-            var cuentaDeAhorro = db.CuentasDeAhorros.SingleOrDefault(x => x.id_propietario == usuario.id);
+            //using var db = new Contexto();
+            var cuentaDeAhorro = context.CuentasDeAhorros.SingleOrDefault(x => x.id_propietario == usuario.id);
 
-            Console.Clear();
+            //Console.Clear();
             Console.WriteLine($"El propietario de la cuenta es: {usuario.nombre}");
             Console.WriteLine($"El saldo de la cuenta es: {cuentaDeAhorro.saldo}");
-            Console.WriteLine();
-            MenuManager.GestionarMenuMiCuenta(usuario);
+            //Console.WriteLine();
+            //MenuManager.GestionarMenuMiCuenta(usuario);
         }
     }
 }

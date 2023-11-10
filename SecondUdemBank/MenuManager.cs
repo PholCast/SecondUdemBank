@@ -168,7 +168,7 @@ namespace SecondUdemBank
             switch (option)
             {
                 case MenuUsuario.MiCuenta:
-                    UsuarioBD.MostrarInformacionCuenta(usuario);
+                    //UsuarioBD.MostrarInformacionCuenta(usuario);
                     break;
                 case MenuUsuario.Pagar:
                     GestionarMenuPagos(usuario);
