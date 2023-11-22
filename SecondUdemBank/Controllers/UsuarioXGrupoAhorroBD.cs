@@ -66,7 +66,7 @@ namespace SecondUdemBank
             if (cuentaDeAhorro.saldo >= saldoIngresado)
             {
                 double SaldoSinComision = saldoIngresado * 0.999;
-                GrupoDeAhorroBD.IncrementarSaldo(grupoDeAhorro.id, SaldoSinComision);
+                //GrupoDeAhorroBD.IncrementarSaldo(grupoDeAhorro.id, SaldoSinComision);
                 cuentaDeAhorro.saldo -= saldoIngresado;
                 Comision.ObtenerComisionDeTransaccion(saldoIngresado);
 

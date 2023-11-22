@@ -9,7 +9,7 @@ namespace SecondUdemBank
 {
     public class Restricciones
     {
-        public static bool TieneMaximoGruposAhorro(int idUsuario)
+        /*public static bool TieneMaximoGruposAhorro(int idUsuario)
         {
             int cantidadGruposAhorro = GrupoDeAhorroBD.ObtenerCantidadGruposDeAhorro(idUsuario);
             if (cantidadGruposAhorro >= 3)
@@ -20,6 +20,6 @@ namespace SecondUdemBank
             {
                 return false;
             }
-        }
+        }*/
     }
 }

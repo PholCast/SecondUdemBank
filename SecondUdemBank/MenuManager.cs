@@ -141,7 +141,7 @@ namespace SecondUdemBank
             switch (option)
             {
                 case MenuFidelizacion.FidelizacionPorGrupoDeAhorro:
-                    Fidelizacion.FidelizacionGrupoDeAhorro();
+                    //Fidelizacion.FidelizacionGrupoDeAhorro();
                     break;
                 case MenuFidelizacion.Salir:
                     MainMenuManagement();
@@ -174,7 +174,7 @@ namespace SecondUdemBank
                     GestionarMenuPagos(usuario);
                     break;
                 case MenuUsuario.HistorialMovimientos:
-                    HistorialMovimientos.historialMovimientos(usuario);
+                    //HistorialMovimientos.historialMovimientos(usuario);
                     break;
                 case MenuUsuario.Prestamos:
                     GestionarMenuPrestamos(usuario);
@@ -203,7 +203,7 @@ namespace SecondUdemBank
             switch (option)
             {
                 case MenuMiCuenta.IngresarSaldoACuentaDeAhorro:
-                    CuentaDeAhorroBD.IngresarCapital(usuario);
+                    //CuentaDeAhorroBD.IngresarCapital(usuario);
                     break;
                 case MenuMiCuenta.Salir:
                     GestionarMenuUsuario(usuario);
@@ -227,11 +227,11 @@ namespace SecondUdemBank
             switch (option)
             {
                 case MenuGestionarGruposDeAhorro.CrearGrupoDeAhorro:
-                    GrupoDeAhorroBD.CrearGrupoDeAhorro(usuario);
+                    //GrupoDeAhorroBD.CrearGrupoDeAhorro(usuario);
                     break;
                 case MenuGestionarGruposDeAhorro.SeleccionarUnGrupoDeAhorro:
-                    GrupoDeAhorro miGrupo = Login.SeleccionarMiGrupoAhorro(usuario.id);
-                    if (miGrupo != null)
+                    //GrupoDeAhorro miGrupo = Login.SeleccionarMiGrupoAhorro(usuario.id);
+                    /*if (miGrupo != null)
                     {
                         GestionarMenuGrupoDeAhorro(usuario, miGrupo);
                     }
@@ -239,7 +239,7 @@ namespace SecondUdemBank
                     {
                         Console.WriteLine($"{usuario.nombre} no tiene grupos de ahorro");
                         GestionarMenuMisGruposDeAhorro(usuario);
-                    }
+                    }*/
                     break;
                 case MenuGestionarGruposDeAhorro.Salir:
                     GestionarMenuUsuario(usuario);
@@ -264,7 +264,7 @@ namespace SecondUdemBank
             switch (option)
             {
                 case MenuGrupoDeAhorro.InvitarUsuarioAGrupoDeAhorro:
-                    bool verificarPropiedad = GrupoDeAhorroBD.VerificarPropietario(usuario, grupo);
+                    /*bool verificarPropiedad = GrupoDeAhorroBD.VerificarPropietario(usuario, grupo);
                     if (verificarPropiedad)
                     {
                         bool VerificarInvitacion = GrupoDeAhorroBD.ObtenerCantidadUsuarios(grupo);
@@ -283,7 +283,7 @@ namespace SecondUdemBank
                     else
                     {
                         GestionarMenuGrupoDeAhorro(usuario, grupo);
-                    }
+                    }*/
                     break;
                 case MenuGrupoDeAhorro.DisolverGrupoDeAhorro:
                     UsuarioXGrupoAhorroBD.DisolverGrupoDeAhorro(usuario, grupo);
@@ -314,9 +314,9 @@ namespace SecondUdemBank
                 case MenuPrestamos.MisGruposDeAhorro:
 
                     //Aqui quedó repetido, hay que organizarlo
-                    GrupoDeAhorro miGrupo = Login.SeleccionarMiGrupoAhorro(usuario.id);
+                    //GrupoDeAhorro miGrupo = Login.SeleccionarMiGrupoAhorro(usuario.id);
 
-                    if (miGrupo != null)
+                    /*if (miGrupo != null)
                     {
                         PrestamoBD.PrestamoGrupoParticipante(usuario, miGrupo);
                     }
@@ -324,10 +324,10 @@ namespace SecondUdemBank
                     {
                         Console.WriteLine($"{usuario.nombre} no tiene grupos de ahorro");
                         GestionarMenuUsuario(usuario);
-                    }
+                    }*/
                     break;
                 case MenuPrestamos.OtrosGrupos:
-                    GrupoDeAhorro otroGrupo = Login.BuscarOtrosGrupos(usuario.id);
+                    /*GrupoDeAhorro otroGrupo = Login.BuscarOtrosGrupos(usuario.id);
                     if (otroGrupo != null)
                     {
                         Console.WriteLine("Niceeee");
@@ -336,7 +336,7 @@ namespace SecondUdemBank
                     else
                     {
                         GestionarMenuUsuario(usuario);
-                    }
+                    }*/
                     break;
                 case MenuPrestamos.Salir:
                     GestionarMenuUsuario(usuario);
@@ -358,7 +358,7 @@ namespace SecondUdemBank
             switch (option)
             {
                 case MenuPagos.PagarMisPrestamos:
-                    TransaccionesGrupoAhorroBD.RegistrarPagoPrestamo(usuario);
+                    //TransaccionesGrupoAhorroBD.RegistrarPagoPrestamo(usuario);
                     break;        
                 case MenuPagos.Salir:
                     GestionarMenuUsuario(usuario);

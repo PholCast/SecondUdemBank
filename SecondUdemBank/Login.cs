@@ -66,7 +66,7 @@ namespace SecondUdemBank
             return usuario;  
         }*/
 
-        public static GrupoDeAhorro SeleccionarMiGrupoAhorro(int idUsuario)
+        /*public static GrupoDeAhorro SeleccionarMiGrupoAhorro(int idUsuario)
         {
             var misUsuarioXGrupoAhorros = UsuarioXGrupoAhorroBD.ObtenerListaMisGrupos(idUsuario);
             if (misUsuarioXGrupoAhorros.Count != 0)
@@ -88,9 +88,9 @@ namespace SecondUdemBank
             {
                 return null;
             }
-        }
+        }*/
 
-        public static GrupoDeAhorro BuscarOtrosGrupos(int usuarioId)
+        /*public static GrupoDeAhorro BuscarOtrosGrupos(int usuarioId)
         {
             var misUsuarioXGrupoAhorros = UsuarioXGrupoAhorroBD.ObtenerListaMisGrupos(usuarioId);
             if (misUsuarioXGrupoAhorros.Count != 0)
@@ -131,16 +131,6 @@ namespace SecondUdemBank
                         }   
                     }
                 }
-
-                //Ahora de esa lista hay que eliminar en los que ya esta el usuario
-                /*foreach(int idGrupo in idGrupos)
-                {
-                    if (listaMisUsuarioXGrupoAhorros.Contains(idGrupo))
-                    {
-                        idGrupos.Remove(idGrupo);
-                    }
-                }
-                //Aqui ya acabo y tiene los id de los otros grupos en los que puede prestar*/
                 
                 var idGruposFiltrados = idGrupos.Except(listaMisUsuarioXGrupoAhorros).ToList(); //Quita los elementos que ya estan en la otra lista
                
@@ -151,16 +141,16 @@ namespace SecondUdemBank
                     return null;
                 }
 
-                return SeleccionarOtrosGrupos(idGruposFiltrados);
+                //return SeleccionarOtrosGrupos(idGruposFiltrados);
             }
             else
             {
                 Console.WriteLine("No puede solicitar prestamos porque no estas en ningun grupo");
                 return null;
             }
-        }
+        }*/
 
-        public static GrupoDeAhorro SeleccionarOtrosGrupos(List<int> idDeGrupos)
+        /*public static GrupoDeAhorro SeleccionarOtrosGrupos(List<int> idDeGrupos)
         {
             //Esto esta repetido, luego hay que quitarlo
             var gruposAhorro = GrupoDeAhorroBD.ObtenerGruposAhorro(idDeGrupos);
@@ -172,6 +162,6 @@ namespace SecondUdemBank
 
             var idGrupo = gruposAhorro.Single(x => x.NombreGrupo == opcion).id;
             return GrupoDeAhorroBD.ObtenerGrupoAhorroId(idGrupo);
-        }
+        }*/
     }
 }

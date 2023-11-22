@@ -9,7 +9,7 @@ namespace SecondUdemBank
 {
     public class PrestamoBD
     {
-        public static void PrestamoGrupoParticipante(Usuario usuario, GrupoDeAhorro grupo)
+        /*public static void PrestamoGrupoParticipante(Usuario usuario, GrupoDeAhorro grupo)
         {
             //Conexión a la BD --> contexto
             (double SaldoPrestamo, int idUxG, int cantidadMeses)? tuplaDatos = PrestamoServicios.SolicitarCantidad(usuario, grupo); //Una tupla que me retorne el valor y el id usuarioxgrupo, cantidadMeses
@@ -43,8 +43,8 @@ namespace SecondUdemBank
                     interes = 0.03
                 });
                 db.SaveChanges();
-                CuentaDeAhorroBD.IngresarCapital(usuario, saldoPrestar, true);
-                GrupoDeAhorroBD.QuitarSaldo(grupo.id, saldoPrestar);
+                //CuentaDeAhorroBD.IngresarCapital(usuario, saldoPrestar, true);
+                //GrupoDeAhorroBD.QuitarSaldo(grupo.id, saldoPrestar);
 
                 Console.WriteLine("Prestamo Agregado");
                 MenuManager.GestionarMenuUsuario(usuario);
@@ -54,9 +54,9 @@ namespace SecondUdemBank
                 MenuManager.GestionarMenuUsuario(usuario);
                 return;
             }
-        }
+        }*/
 
-        public static void PrestamoOtrosGrupos(Usuario usuario, GrupoDeAhorro grupo)
+        /*public static void PrestamoOtrosGrupos(Usuario usuario, GrupoDeAhorro grupo)
         {
             (double SaldoPrestamo, int idUxG, int cantidadMeses)? tuplaDatos = PrestamoServicios.VerificarPrestamoOtrosGrupos(usuario, grupo); //Una tupla que me retorne el valor y el id usuarioxgrupo, cantidadMeses
 
@@ -88,8 +88,8 @@ namespace SecondUdemBank
                     interes = 0.05
                 });
                 db.SaveChanges();
-                CuentaDeAhorroBD.IngresarCapital(usuario, saldoPrestar);
-                GrupoDeAhorroBD.QuitarSaldo(grupo.id, saldoPrestar);
+                //CuentaDeAhorroBD.IngresarCapital(usuario, saldoPrestar);
+                //GrupoDeAhorroBD.QuitarSaldo(grupo.id, saldoPrestar);
 
                 Console.WriteLine("Prestamo Agregado");
                 MenuManager.GestionarMenuUsuario(usuario);
@@ -100,7 +100,7 @@ namespace SecondUdemBank
                 MenuManager.GestionarMenuUsuario(usuario);
                 return;
             }
-        }
+        }*/
 
         public static List<Prestamo> ObtenerHistorialPrestamo(int idUsuario)
         {

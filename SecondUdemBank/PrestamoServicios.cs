@@ -9,7 +9,7 @@ namespace SecondUdemBank
 {
     public class PrestamoServicios
     {
-        public static (double SaldoPrestamo, int idUxG, int CantidadMeses)? SolicitarCantidad(Usuario usuario, GrupoDeAhorro grupo)
+        /*public static (double SaldoPrestamo, int idUxG, int CantidadMeses)? SolicitarCantidad(Usuario usuario, GrupoDeAhorro grupo)
         {
             var saldoPrestar = SolicitarSaldo();
 
@@ -70,9 +70,9 @@ namespace SecondUdemBank
             } while (cantidadMeses <= 2);
 
             return cantidadMeses;
-        }
+        }*/
 
-        public static bool VerificarCantidadPrestamo(double saldoAPrestar, int idUsuarioGrupo, GrupoDeAhorro grupo)
+        /*public static bool VerificarCantidadPrestamo(double saldoAPrestar, int idUsuarioGrupo, GrupoDeAhorro grupo)
         {
             var saldoGrupo = GrupoDeAhorroBD.ObtenerSaldoGrupo(grupo.id);
             if(saldoAPrestar  > saldoGrupo) {
@@ -89,10 +89,10 @@ namespace SecondUdemBank
             }
 
             return true;
-        }
+        }*/
 
         //A partir de aqui los de otros grupos
-        public static (double SaldoPrestamo, int idUxG, int CantidadMeses)? VerificarPrestamoOtrosGrupos(Usuario usuario, GrupoDeAhorro grupo)
+        /*public static (double SaldoPrestamo, int idUxG, int CantidadMeses)? VerificarPrestamoOtrosGrupos(Usuario usuario, GrupoDeAhorro grupo)
         {
             double cantidadAPrestar = SolicitarSaldo();
             var saldoGrupo = GrupoDeAhorroBD.ObtenerSaldoGrupo(grupo.id);
@@ -113,6 +113,6 @@ namespace SecondUdemBank
                 MostrarDatosPrestamo(cantidadAPrestar, idUsuarioxGrupo, numeroMeses);
                 return tupla;
             }
-        }
+        }*/
     }
 }

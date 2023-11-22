@@ -35,7 +35,7 @@ namespace SecondUdemBank
         }
 
 
-        public static void RegistrarPagoPrestamo(Usuario usuario)
+        /*public static void RegistrarPagoPrestamo(Usuario usuario)
         {
             var infoTransaccion = PagoServicios.RealizarPagoPrestamo(usuario);
 
@@ -50,6 +50,6 @@ namespace SecondUdemBank
             }
 
             MenuManager.GestionarMenuUsuario(usuario);
-        }
+        }*/
     }
 }

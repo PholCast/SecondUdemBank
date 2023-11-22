@@ -9,13 +9,13 @@ namespace SecondUdemBank
 {
     public class Fidelizacion
     {
-        public static void FidelizacionGrupoDeAhorro()
+        /*public static void FidelizacionGrupoDeAhorro()
         {
             GrupoDeAhorro grupoDeAhorro = GrupoDeAhorroBD.IngresarFidelizacion();
 
             Console.WriteLine($"El grupo con el saldo más alto es: {grupoDeAhorro.NombreGrupo} ha recibido un incremento del 10%.");
             MenuManager.GestionarMenuFidelizacion();
-        }
+        }*/
 
     }
 }

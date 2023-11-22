@@ -9,7 +9,7 @@ namespace SecondUdemBank
 {
     public class HistorialMovimientos
     {
-        public static void historialMovimientos(Usuario usuario)
+        /*public static void historialMovimientos(Usuario usuario)
         {
             var transaccionesPersonales = CuentaDeAhorroBD.ObtenerHistorialCuentaDeAhorro(usuario.id);
 
@@ -56,6 +56,6 @@ namespace SecondUdemBank
             }
 
             MenuManager.GestionarMenuUsuario(usuario);
-        }
+        }*/
     }
 }

@@ -13,15 +13,6 @@ namespace SecondUdemBankTest
         [TestMethod]
         public void CrearCuentaTest()
         {
-            /*string nombre = "Arnulfo";
-            string clave = "Arfnulfo123";
-
-            var contextMock = new Mock<Contexto>();
-
-
-            UsuarioBD usuarioBD = new UsuarioBD(contextMock.Object);*/
-
-
             var mockSet = new Mock<DbSet<Usuario>>();
 
             var mockContext = new Mock<Contexto>();

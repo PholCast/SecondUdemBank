@@ -10,53 +10,56 @@ namespace SecondUdemBank
 {
     public class CuentaDeAhorroBD
     {
-        public static void CrearCuentaDeAhorro(int id, double Saldo = -1)
+        private Contexto context;
+
+        public CuentaDeAhorroBD(Contexto contexto)
+        {
+            context = contexto;
+        }
+
+        public void CrearCuentaDeAhorro(int id, double Saldo = -1)
         {
             if (Saldo == -1) { 
              Saldo = AnsiConsole.Ask<double>("Ingresa tu saldo inicial: "); }
 
-            using var db = new Contexto(); //Conexión a la BD --> contexto
-            db.CuentasDeAhorros.Add(new CuentaDeAhorro { id_propietario = id, saldo  = Saldo });
-            db.SaveChanges();
+            context.CuentasDeAhorros.Add(new CuentaDeAhorro { id_propietario = id, saldo = Saldo });
+            context.SaveChanges();
         }
 
-        public static void IngresarCapital(Usuario usuario, double saldoIngresado = -1,bool prestamo =false)
+        public void IngresarCapital(CuentaDeAhorro cuentaDeAhorro, double saldoIngresado = -1,bool prestamo =false)
         {
-            using var db = new Contexto();
 
-            var cuentaDeAhorro = db.CuentasDeAhorros.SingleOrDefault(x => x.id_propietario == usuario.id);
-            
-            if(saldoIngresado ==-1)
+            if (saldoIngresado ==-1)
             {
                 saldoIngresado = AnsiConsole.Ask<double>("Ingresa la cantidad de saldo: "); 
             }
             if (saldoIngresado <= 0)
             {
                 Console.WriteLine("Saldo invalido");
-                MenuManager.GestionarMenuMiCuenta(usuario);
+                return;
             }
             else
             {
                 double saldoSinComision = saldoIngresado * 0.999;
                 cuentaDeAhorro.saldo += saldoSinComision;
-                Comision.ObtenerComisionDeTransaccion(saldoIngresado);
-                TransaccionesBD.RegistrarTransaccionCuenta(cuentaDeAhorro.id, saldoSinComision, "Transación cuenta de ahorro");
-                db.SaveChanges();
+                //Comision.ObtenerComisionDeTransaccion(saldoIngresado);
+                //TransaccionesBD.RegistrarTransaccionCuenta(cuentaDeAhorro.id, saldoSinComision, "Transación cuenta de ahorro");
+                context.SaveChanges();
+
                 Console.WriteLine("El saldo se ha actualizado correctamente");
-                if (prestamo == true)
+
+                /*if (!prestamo)
                 {
-                    return;
-                }
-                MenuManager.GestionarMenuUsuario(usuario);
+                    MenuManager.GestionarMenuUsuario(usuario);
+                }*/
             }
         }
 
-        public static List<Transacciones> ObtenerHistorialCuentaDeAhorro(int idUsuario)
+        public List<Transacciones> ObtenerHistorialCuentaDeAhorro(int idUsuario)
         {
-            using var db = new Contexto();
 
             // Obtener transacciones personales
-            var transaccionesPersonales = db.TransaccionesCuentaAhorros
+            var transaccionesPersonales = context.TransaccionesCuentaAhorros
                 .Where(t => t.CuentaDeAhorro.id_propietario == idUsuario)
                 .ToList();
 

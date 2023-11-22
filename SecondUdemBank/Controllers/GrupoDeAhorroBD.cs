@@ -9,72 +9,66 @@ namespace SecondUdemBank
 {
     public class GrupoDeAhorroBD
     {
-        public static void CrearGrupoDeAhorro(Usuario usuario)
+        private Contexto context;
+
+        public GrupoDeAhorroBD(Contexto contexto)
         {
-            bool MaximoGruposDeAhorro = Restricciones.TieneMaximoGruposAhorro(usuario.id);
-            if (MaximoGruposDeAhorro == true)
-            {
-                Console.WriteLine("Ya no puedes crear más grupos de ahorro");
-            }
-            else
-            {
-                var nombreGrupo = AnsiConsole.Ask<string>("Ingresa un nombre para el grupo de ahorro: ");
+            context = contexto;
+        }
+        public void CrearGrupoDeAhorro(Usuario usuario, string nombreGrupo)
+        {
+            // using var db = new Contexto(); // Ya no es necesario
+            var grupoAhorro = new GrupoDeAhorro { id_CreadorGrupo = usuario.id, SaldoGrupo = 0, NombreGrupo = nombreGrupo };
 
-                using var db = new Contexto(); //Conexión a la BD --> contexto
-                var grupoAhorro = new GrupoDeAhorro { id_CreadorGrupo = usuario.id, SaldoGrupo = 0, NombreGrupo = nombreGrupo };
+            context.GruposDeAhorros.Add(grupoAhorro);
+            context.SaveChanges();
 
-                db.GruposDeAhorros.Add(grupoAhorro);
-                db.SaveChanges();
+            // UsuarioXGrupoAhorroBD.UnirseAGrupoDeAhorro(usuario.id, grupoAhorro.id);
 
-                UsuarioXGrupoAhorroBD.UnirseAGrupoDeAhorro(usuario.id, grupoAhorro.id);
-            }
-
-            MenuManager.GestionarMenuMisGruposDeAhorro(usuario);
+            // MenuManager.GestionarMenuMisGruposDeAhorro(usuario);
         }
 
-        public static List<GrupoDeAhorro> ObtenerGruposAhorro(List<int> listId)
+        public List<GrupoDeAhorro> ObtenerGruposAhorro(List<int> listId)
         {
-            using var db = new Contexto();
             List<GrupoDeAhorro> Grupos = new List<GrupoDeAhorro>();
             foreach (int id in listId)
             {
-                GrupoDeAhorro grupo = db.GruposDeAhorros.Single(g => g.id == id);
+                GrupoDeAhorro grupo = context.GruposDeAhorros.FirstOrDefault(g => g.id == id);
                 Grupos.Add(grupo);
             }
             return Grupos;
         }
 
-        public static GrupoDeAhorro ObtenerGrupoAhorroId(int id)
+        public GrupoDeAhorro ObtenerGrupoAhorroPorId(int id)
         {
-            using var db = new Contexto();
-            var grupo = db.GruposDeAhorros.SingleOrDefault(u => u.id == id);
+            // using var db = new Contexto(); // Ya no es necesario
+            var grupo = context.GruposDeAhorros.SingleOrDefault(u => u.id == id);
             return grupo;
         }
 
-        public static void IncrementarSaldo(int id,double saldo)
+        public  void IncrementarSaldo(int id,double saldo)
         {
-            Console.WriteLine("Entre a agregar saldo al grupo");
-            using var db = new Contexto();
-            var grupo = db.GruposDeAhorros.SingleOrDefault(u => u.id == id);
-            //var grupo = ObtenerGrupoAhorroId(id);
-            grupo.SaldoGrupo += saldo;
-            db.SaveChanges();
+            var grupo = context.GruposDeAhorros.SingleOrDefault(u => u.id == id);
+
+            if (grupo != null)
+            {
+                grupo.SaldoGrupo += saldo;
+                context.SaveChanges();
+            }    
         }
-        public static void QuitarSaldo(int id, double saldo)
+        public void QuitarSaldo(int id, double saldo)
         {
-            Console.WriteLine("Entre a quitar saldo del grupo");
-            using var db = new Contexto();
-            var grupo = db.GruposDeAhorros.SingleOrDefault(u => u.id == id);
-            //var grupo = ObtenerGrupoAhorroId(id);
-            grupo.SaldoGrupo -= saldo;
-            
-            db.SaveChanges();
+            var grupo = context.GruposDeAhorros.SingleOrDefault(u => u.id == id);
+
+            if (grupo != null)
+            {
+                grupo.SaldoGrupo -= saldo;
+                context.SaveChanges();
+            }
         }
 
-        public static bool VerificarPropietario(Usuario usuario, GrupoDeAhorro grupoDeAhorro)
+        public bool VerificarPropietario(Usuario usuario, GrupoDeAhorro grupoDeAhorro)
         {
-            using var db = new Contexto();
-
             if (grupoDeAhorro.id_CreadorGrupo == usuario.id)
             {
                 return true;
@@ -86,12 +80,11 @@ namespace SecondUdemBank
             }
         }
 
-        public static void IngresarUsuarioAGrupoDeAhorro(Usuario usuario, Usuario usuarioInvitado, GrupoDeAhorro grupoDeAhorro)
+        public void IngresarUsuarioAGrupoDeAhorro(Usuario usuario, Usuario usuarioInvitado, GrupoDeAhorro grupoDeAhorro)
         {
-            using var db = new Contexto();
 
             // Verifica si el usuario ya pertenece al grupo de ahorro
-            var Pertenece = db.UsuariosXGruposAhorros.SingleOrDefault(ug => ug.id_ParticipanteGrupo == usuarioInvitado.id && ug.id_GrupoAhorro == grupoDeAhorro.id);
+            var Pertenece = context.UsuariosXGruposAhorros.SingleOrDefault(ug => ug.id_ParticipanteGrupo == usuarioInvitado.id && ug.id_GrupoAhorro == grupoDeAhorro.id);
 
             if (Pertenece != null)
             {
@@ -99,43 +92,32 @@ namespace SecondUdemBank
             }
             else
             {
-                bool MaximoGruposDeAhorro = Restricciones.TieneMaximoGruposAhorro(usuarioInvitado.id);
-                if (MaximoGruposDeAhorro == true)
-                {
-                    Console.WriteLine($"El usuario {usuarioInvitado.nombre} ya no puede estar en más grupos de ahorro");
-                }
-                else
-                {
-                    UsuarioXGrupoAhorroBD.UnirseAGrupoDeAhorro(usuarioInvitado.id, grupoDeAhorro.id);
-                    Console.WriteLine($"{usuarioInvitado.nombre} ha sido agregado al grupo de ahorro {grupoDeAhorro.NombreGrupo}");
-                }
+                UsuarioXGrupoAhorroBD.UnirseAGrupoDeAhorro(usuarioInvitado.id, grupoDeAhorro.id);
+                Console.WriteLine($"{usuarioInvitado.nombre} ha sido agregado al grupo de ahorro {grupoDeAhorro.NombreGrupo}");
             }
-            MenuManager.GestionarMenuGrupoDeAhorro(usuario, grupoDeAhorro);
+            //MenuManager.GestionarMenuGrupoDeAhorro(usuario, grupoDeAhorro);
         }
 
-        public static double ObtenerSaldoGrupo(int id)
+        public double ObtenerSaldoGrupo(int id)
         {
-            using var db = new Contexto();
-            var grupo = db.GruposDeAhorros.SingleOrDefault(u => u.id == id);
+            var grupo = context.GruposDeAhorros.SingleOrDefault(u => u.id == id);
             return grupo.SaldoGrupo;
         }
 
-        public static int ObtenerCantidadGruposDeAhorro(int idUsuario)
+        public int ObtenerCantidadGruposDeAhorro(int idUsuario)
         {
-            using var db = new Contexto();
 
-            int cantidadGruposAhorro = db.UsuariosXGruposAhorros
+            int cantidadGruposAhorro = context.UsuariosXGruposAhorros
                 .Where(x => x.id_ParticipanteGrupo == idUsuario && x.PerteneceAlGrupo)
                 .Count();
 
             return cantidadGruposAhorro;
         }
 
-        public static bool ObtenerCantidadUsuarios(GrupoDeAhorro grupoDeAhorro)
+        public bool ObtenerCantidadUsuarios(GrupoDeAhorro grupoDeAhorro)
         {
-            using var db = new Contexto();
 
-            int cantidadUsuarios = db.UsuariosXGruposAhorros
+            int cantidadUsuarios = context.UsuariosXGruposAhorros
                 .Count(ug => ug.id_GrupoAhorro == grupoDeAhorro.id && ug.PerteneceAlGrupo);
 
             if (cantidadUsuarios <= 2)
@@ -148,16 +130,15 @@ namespace SecondUdemBank
             }
         }
 
-        public static GrupoDeAhorro IngresarFidelizacion()
+        public GrupoDeAhorro IngresarFidelizacion()
         {
-            using var db = new Contexto();
 
-            var grupos = db.GruposDeAhorros.ToList();
+            var grupos = context.GruposDeAhorros.ToList();
 
             if (grupos.Count == 0)
             {
                 Console.WriteLine("No hay grupos de ahorro");
-                MenuManager.GestionarMenuFidelizacion();
+                //MenuManager.GestionarMenuFidelizacion();
             }
 
             GrupoDeAhorro grupoConMayorSaldo = grupos[0];
@@ -171,7 +152,7 @@ namespace SecondUdemBank
 
             double incremento = grupoConMayorSaldo.SaldoGrupo * 0.10;
             grupoConMayorSaldo.SaldoGrupo += incremento;
-            db.SaveChanges();
+            context.SaveChanges();
 
             return grupoConMayorSaldo;
         }

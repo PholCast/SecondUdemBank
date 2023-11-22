@@ -10,9 +10,9 @@ namespace SecondUdemBank
     public class PagoServicios
     {
 
-        public static (double,int,DateOnly) RealizarPagoPrestamo(Usuario usuario)
+        /*public static (double,int,DateOnly) RealizarPagoPrestamo(Usuario usuario)
         {
-            var grupos = ObtenerGruposPorPagar(usuario);
+            //var grupos = ObtenerGruposPorPagar(usuario);
 
             if(grupos == null)
             {
@@ -40,14 +40,14 @@ namespace SecondUdemBank
 
             return (cuota,relacionUsuarioGrupo,fechaDeCuota);
 
-
-        }
-
-
+        
+        }*/
 
 
 
-        public static List<GrupoDeAhorro> ObtenerGruposPorPagar(Usuario usuario)
+
+
+        /*public static List<GrupoDeAhorro> ObtenerGruposPorPagar(Usuario usuario)
         {
             List<Prestamo> prestamos = PrestamoBD.ObtenerPrestamosVigentes(usuario.id);
 
@@ -66,7 +66,7 @@ namespace SecondUdemBank
             var idGrupos = UsuarioXGrupoAhorroBD.ObtenerIdGrupos(usuarioXGrupos);
             
 
-            var grupos = GrupoDeAhorroBD.ObtenerGruposAhorro(idGrupos);
+            //var grupos = GrupoDeAhorroBD.ObtenerGruposAhorro(idGrupos);
 
 
             return grupos;
@@ -74,7 +74,7 @@ namespace SecondUdemBank
 
 
 
-        }
+        }*/
 
         public static int SeleccionarGrupoPorPagar(List<GrupoDeAhorro> grupos)
         {
